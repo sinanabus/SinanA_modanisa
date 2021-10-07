@@ -21,6 +21,6 @@ describe('AddToDoItem.vue', () =>  {
     });
     
     test("button text should be Add", () => {
-        expect(wrapper.find("#AddButton").text()).toBe(true);
+        expect(wrapper.find("#AddButton").text()).toBe('Add');
     })
 });

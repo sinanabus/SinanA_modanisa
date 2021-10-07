@@ -1,6 +1,7 @@
 <template>
     <div>
         <input id='ToDoInput' placeholder="Create a new todo">
+        <button id='AddButton'>Add</button>
     </div>
 </template>
 
