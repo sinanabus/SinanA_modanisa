@@ -1,9 +1,12 @@
 <template>
-<h1> Hello world! </h1>
+<h1> {{title}} </h1>
 </template>
 
 <script>
-export default {}
+export default {
+    name:"Header",
+    props: ["title"]
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
