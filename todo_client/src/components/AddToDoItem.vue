@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <input id='ToDoInput' placeholder="Create a new todo">
+    </div>
 </template>
 
 <script>
