@@ -1,13 +1,24 @@
 <template>
     <div>
-        <input id='ToDoInput' placeholder="Create a new todo">
-        <button id='AddButton'>Add</button>
+        <form ref="form" @submit.prevent="AddToDo">
+            <input id='ToDoInput' v-model="input" placeholder="Create a new todo">
+            <button id='AddButton'>Add</button>
+        </form>
     </div>
 </template>
 
 <script>
 export default {
-    name:"AddToDoItem"
+    name:"AddToDoItem",
+    data() {
+        return { input: ''}
+    },
+    methods : {
+        AddToDo() {
+            this.$emit('addtodo', this.input);
+            this.$refs.form.reset()
+        }
+    }
 }
 </script>
 

@@ -1,7 +1,4 @@
 <template>
-  <Header title="To Do App"/>
-  <AddToDoItem></AddToDoItem>
-  <ToDoList></ToDoList>
 </template>
 
 <script>
@@ -15,6 +12,19 @@ export default {
     Header,
     AddToDoItem,
     ToDoList,
+  },
+  data ()  {
+   return {
+      items : []
+   }
+  },
+  methods : {
+    POSTtodos () {
+
+    },
+    GETtodos () {
+
+    }
   }
 }
 </script>
