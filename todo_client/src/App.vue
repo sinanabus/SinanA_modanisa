@@ -18,7 +18,8 @@ export default {
   },
   data ()  {
    return {
-      items : []
+     id : String,
+     items : []
    }
   },
   methods : {
@@ -26,7 +27,7 @@ export default {
 
     },
     GETtodos () {
-
+      return this.data
     }
   }
 }
