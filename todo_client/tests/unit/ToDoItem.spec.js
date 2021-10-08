@@ -4,7 +4,7 @@ import ToDoItem from '@/components/ToDoItem.vue'
 const text = "To do item text 1";
 const wrapper = shallowMount (ToDoItem , {
     propsData: {
-        input: { text: text}
+        input: text
     }
 });
 

@@ -1,9 +1,15 @@
 <template>
+    <div>
+        {{input}}
+    </div>
 </template>
 
 <script>
 export default {
-    name:"ToDoItem"
+    name:"ToDoItem",
+    props : {
+        input: String
+    }
 }
 </script>
 
