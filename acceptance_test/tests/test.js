@@ -1,4 +1,4 @@
-const { openBrowser, closeBrowser, write, into, goto, textBox, click } = require('taiko');
+const { openBrowser, closeBrowser, write, into, goto, textBox, click, button } = require('taiko');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
 
@@ -20,6 +20,7 @@ step("Add <item>", async (item) => {
     await write(item, into(textBox("Create a new todo")));
 });
 
-step("Click AddButton", () => {
-    await click(button('AddButton'));
+step("Click AddButton", async () => {
+    await click(button('Add'));
 });
+
