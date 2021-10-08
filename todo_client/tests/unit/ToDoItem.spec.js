@@ -9,11 +9,11 @@ const wrapper = shallowMount (ToDoItem , {
 });
 
 describe('ToDoItem.vue', () => {
-    test('renders a ToDoItem vue component', () => {
+    test('renders a ToDoItem vue component', async () => {
         expect(wrapper.exists()).toBe(true);
     })
 
-    test('ToDoItem component contains expected text', () => {
+    test('ToDoItem component contains expected text', async () => {
         expect(wrapper.text()).toBe(text)
     });
 });
