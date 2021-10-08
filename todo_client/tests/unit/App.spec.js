@@ -5,7 +5,7 @@ import ToDoList from '@/components/ToDoList.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 
 const items = ["To do item text 1", "To do item text 2", "To do item text 3"];
-const wrapper = shallowMount (ToDoList , {
+const wrapper = shallowMount (App , {
     propsData: {
         items: items
     }

@@ -1,4 +1,7 @@
 <template>
+  <Header title="To Do App"></Header>
+  <AddToDoItem @addtodo='POSTtodo'></AddToDoItem>
+  <ToDoList v-bind:items='items'></ToDoList>
 </template>
 
 <script>
