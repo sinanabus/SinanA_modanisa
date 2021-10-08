@@ -22,4 +22,11 @@ describe('App.vue', () => {
         expect(AddComponent.exists()).toBe(true);
         expect(ToDoListComponent.exists()).toBe(true);
     });
+
+    test('calls POSTtodos when button is clicked', () => {
+        jest.spyOn(window, 'POSTtodos');
+        wrapper.find('#AddButon').trigger('click');
+        window.POSTtodos();
+        expect(window.POSTtodos).toHaveBeenCalled();
+    });
 });
