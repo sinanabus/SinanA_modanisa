@@ -15,8 +15,9 @@ describe("ToDoList.vue", () => {
     }
     );
     
-    test('First element should be To do item text 2', async () => {
-        expect(wrapper.findAllComponents(ToDoItem).at(0).find('div').text()).toBe('To do item text 2');
+    test('First element should be To do item text 1', async () => {
+        //console.log(wrapper.findAllComponents(ToDoItem).at(0).vm);
+        expect(wrapper.findAllComponents(ToDoItem).at(0).vm.input).toBe('To do item text 1');
     });
 
     test('renders 3 ToDoItem components', async () => {

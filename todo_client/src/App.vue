@@ -1,17 +1,20 @@
 <template>
   <Header title="To Do App"/>
-  <AddToDoItem/>
+  <AddToDoItem></AddToDoItem>
+  <ToDoList></ToDoList>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import AddToDoItem from './components/AddToDoItem.vue'
+import Header from '@/components/Header.vue'
+import AddToDoItem from '@/components/AddToDoItem.vue'
+import ToDoList from '@/components/ToDoList.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    AddToDoItem
+    AddToDoItem,
+    ToDoList,
   }
 }
 </script>
