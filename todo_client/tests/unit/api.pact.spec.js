@@ -76,4 +76,68 @@ describe("API Pact test", () => {
             expect(todos).toStrictEqual([])
         });
     });
+
+    describe('Testing POSTtodos', async () => {
+        test('posting empyt todos', async () => {
+           // set up Pact interactions
+            await provider.addInteraction({
+            state: 'todos do not exist',
+            uponReceiving: 'post empty todos',
+            withRequest: {
+                method: 'POST',
+                path: '/todos',
+                headers: {},
+                body: [],
+            },
+            willRespondWith: {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: {
+                    message: 'Empty todos'
+                }
+            },
+        });
+
+        const api = new API(provider.mockService.baseUrl);
+        // make request to mock server
+        const todos = await api.POSTtodos([]);
+        expect(todos.data).toStrictEqual({"message": "Empty todos"})
+        });
+
+        test("posting non-empty todos", async () => {
+            await provider.addInteraction({
+            state: 'todos do not exist',
+            uponReceiving: 'post non-empty to do',
+            withRequest: {
+                method: 'POST',
+                path: '/todos',
+                headers: {},
+                body: [{
+                    id: "1",
+                    items: ["TASK 1", "TASK 2"]
+                }],
+            },
+            willRespondWith: {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body : {
+                    message: 'non-empty todos recieved'
+                }
+            },
+        });
+        const api = new API(provider.mockService.baseUrl);
+        // make request to mock server
+        const todos = await api.POSTtodos([{
+            id: "1",
+            items: ["TASK 1", "TASK 2"]
+        }]);
+        expect(todos.data).toStrictEqual({message: 'non-empty todos recieved'})
+
+        });
+    });
+
 });
