@@ -6,7 +6,7 @@ import {API} from "@/api";
 
 const provider = new Pact({
     consumer: 'FrontendWebsite',
-    provider: 'ProductService',
+    provider: 'BackEndService',
     log: path.resolve(process.cwd(), 'logs', 'pact.log'),
     logLevel: "warn",
     dir: path.resolve(process.cwd(), 'pacts'),
@@ -34,10 +34,10 @@ describe("API Pact test", () => {
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'
                     },
-                    body: ([{
+                    body: [{
                         id: "1",
                         items: ["TASK 1", "TASK 2"]
-                    }]),
+                    }],
                 },
             });
             
@@ -61,11 +61,11 @@ describe("API Pact test", () => {
                     headers: {}
                 },
                 willRespondWith: {
-                    status: 200,
+                    status: 204,
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'
                     },
-                    body: ([]),
+                    body : [],
                 },
             });
             
@@ -73,7 +73,8 @@ describe("API Pact test", () => {
 
             // make request to mock server
             const todos = await api.GETtodos();
-            expect(todos).toStrictEqual([])
+            console.log(todos);
+            expect(todos).toStrictEqual("");
         });
     });
 
@@ -90,12 +91,9 @@ describe("API Pact test", () => {
                 body: [],
             },
             willRespondWith: {
-                status: 200,
+                status: 204,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
-                },
-                body: {
-                    message: 'Empty todos'
                 }
             },
         });
@@ -103,7 +101,7 @@ describe("API Pact test", () => {
         const api = new API(provider.mockService.baseUrl);
         // make request to mock server
         const todos = await api.POSTtodos([]);
-        expect(todos.data).toStrictEqual({"message": "Empty todos"})
+        expect(todos.status).toStrictEqual(204);
         });
 
         test("posting non-empty todos", async () => {
@@ -123,9 +121,6 @@ describe("API Pact test", () => {
                 status: 200,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8'
-                },
-                body : {
-                    message: 'non-empty todos recieved'
                 }
             },
         });
@@ -135,7 +130,7 @@ describe("API Pact test", () => {
             id: "1",
             items: ["TASK 1", "TASK 2"]
         }]);
-        expect(todos.data).toStrictEqual({message: 'non-empty todos recieved'})
+        expect(todos.status).toStrictEqual(200);
 
         });
     });
