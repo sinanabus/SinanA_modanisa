@@ -1,3 +1,4 @@
+// this script is retrieved and modified from https://github.com/pact-foundation/pact-workshop-js/blob/master/consumer/src/api.js
 import axios from 'axios';
 import adapter from "axios/lib/adapters/http";
 
@@ -26,7 +27,8 @@ export class API {
         return axios.get(this.withPath("/todos")).then(r => r.data);
     }
 
-    async POSTtodos() {
+    async POSTtodos(data) {
+        return axios.post(this.withPath("/todos"), data);
     }
 }
 
