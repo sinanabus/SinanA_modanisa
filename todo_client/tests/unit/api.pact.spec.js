@@ -44,17 +44,17 @@ describe("API Pact test", () => {
             const api = new API(provider.mockService.baseUrl);
 
             // make request to mock server
-            const product = await api.GETtodos();
-            expect(product).toStrictEqual(
+            const todos = await api.GETtodos();
+            expect(todos).toStrictEqual(
                 [{"id": "1", "items": ["TASK 1", "TASK 2"]}]
             );
         });
 
-        test("products exists", async () => {
+        test("todos do not exist", async () => {
             // set up Pact interactions
             await provider.addInteraction({
-                state: 'todos exist',
-                uponReceiving: 'get all todos',
+                state: 'todos do not exist',
+                uponReceiving: 'get empty to do',
                 withRequest: {
                     method: 'GET',
                     path: '/todos',
@@ -72,8 +72,8 @@ describe("API Pact test", () => {
             const api = new API(provider.mockService.baseUrl);
 
             // make request to mock server
-            const product = await api.GETtodos();
-            expect(product).toStrictEqual([])
+            const todos = await api.GETtodos();
+            expect(todos).toStrictEqual([])
         });
     });
 });
