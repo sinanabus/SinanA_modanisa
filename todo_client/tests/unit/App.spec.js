@@ -23,11 +23,9 @@ describe('App.vue', () => {
         expect(ToDoListComponent.exists()).toBe(true);
     });
 
-    test('calls POSTtodos when button is clicked', () => {
-        const MethodisCalled = jest.spyOn(wrapper.methods, 'POSTtodos');
-        const AddComponent = wrapper.findComponent(AddToDoItem);
-        AddComponent.find("#AddButton").trigger('click');
-        expect(MethodisCalled).toBeCalled()
+    test('calls POSTtodos when addtodo is emitted', () => {
+        wrapper.vm.$emit('addtodo');
+        expect(wrapper.emitted().addtodo).toBeTruthy();
     });
 
 });

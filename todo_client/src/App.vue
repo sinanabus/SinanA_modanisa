@@ -1,6 +1,6 @@
 <template>
   <Header title="To Do App"></Header>
-  <AddToDoItem @addtodo='POSTtodo'></AddToDoItem>
+  <AddToDoItem @addtodo='POSTtodos'></AddToDoItem>
   <ToDoList v-bind:items='items'></ToDoList>
 </template>
 
@@ -8,6 +8,7 @@
 import Header from '@/components/Header.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoList from '@/components/ToDoList.vue'
+import API from '@/api'
 
 export default {
   name: 'App',
@@ -23,8 +24,8 @@ export default {
    }
   },
   methods : {
-    POSTtodos () {
-
+    POSTtodos ()  {
+      API.POSTtodos(this.data);
     },
     GETtodos () {
       return this.data
