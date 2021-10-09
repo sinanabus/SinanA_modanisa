@@ -24,9 +24,10 @@ describe('App.vue', () => {
     });
 
     test('calls POSTtodos when button is clicked', () => {
-        jest.spyOn(window, 'POSTtodos');
-        wrapper.find('#AddButon').trigger('click');
-        window.POSTtodos();
-        expect(window.POSTtodos).toHaveBeenCalled();
+        const MethodisCalled = jest.spyOn(wrapper.methods, 'POSTtodos');
+        const AddComponent = wrapper.findComponent(AddToDoItem);
+        AddComponent.find("#AddButton").trigger('click');
+        expect(MethodisCalled).toBeCalled()
     });
+
 });
