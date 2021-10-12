@@ -28,15 +28,28 @@ export default {
   },
   methods : {
     async POSTtodos (todos)  {
-      var send = {"uid" : "1" ,"items": todos}
-      axios.post("http://localhost:8080/todos", send).then(await this.GETtodos())
+      // handle POST method to backend
+      var send = {"uid" : this.uid ,"items": todos}
+      await axios.post("http://localhost:8080/todos", send).then(await this.GETtodos(this.uid))
     },
-    async GETtodos () {
-      await axios.get("http://localhost:8080/todos/1").then(response => this.items = response.data.items)
-    }
+    async GETtodos (uid) {
+      // handle GET method to backend
+      await axios.get('http://localhost:8080/todos/' + uid).then(response => this.items = response.data.items)
+    },
+    async getIP () {
+      // Get IP of the user to store in the backend
+        await fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(response => {
+        this.uid = response.ip;
+        });
+        console.log(this.uid)
+    },
   },
+
   mounted () {
-    this.GETtodos();
+    this.getIP();
+    this.GETtodos(this.uid);
   }
 }
 </script>
