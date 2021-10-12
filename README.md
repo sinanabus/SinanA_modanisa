@@ -7,6 +7,23 @@ Vue is used as a framework, Express used to serve the package that is build by N
 # Back End
 Python's Flask-RESTful is used to create a simple api as the backend server.
 
+# Acceptance Testing
+Gauge and Taiko is used.
+
+# Unit Testing for Vue
+Jest and vue-test-utils are used.
+todo_clint/tests/unit
+
+# Unit Testing for Flask
+unittest package is used.
+todo_api/main_test.py
+
+# Contract Tests - Consumer
+pact-node is used.
+
+# Contract Test - Provider
+pact-python is used.
+
 # Deployments
 Both backend and frontend is deployed to heroku.
 
