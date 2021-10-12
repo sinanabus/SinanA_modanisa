@@ -12,7 +12,7 @@ class UnitTestAPI(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         print('Test handleGET returns a status ok response.')
 
-    data = {"id": "1", "items":["TASK 1", "TASK 2"]}
+    data = {"uid": "1", "items":{ "1":"TASK 1", "2" :"TASK 2"}}
     def test_handlePOST(self):
         # A method to test POST request functionality
         resp = requests.post(self.URL, json=self.data)
