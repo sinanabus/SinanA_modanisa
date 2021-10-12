@@ -1,6 +1,6 @@
 <template>
     <ul id="ToDoList">
-        <li v-for="item in items" v-bind:key="item.input">
+        <li v-for="item in items" v-bind:key="item">
             <ToDoItem v-bind:input="item"></ToDoItem>
         </li>
     </ul>

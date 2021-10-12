@@ -8,7 +8,10 @@
 import Header from '@/components/Header.vue'
 import AddToDoItem from '@/components/AddToDoItem.vue'
 import ToDoList from '@/components/ToDoList.vue'
-import API from '@/api'
+//import API from '@/api'
+import axios from 'axios'
+
+window.axios = require('axios')
 
 export default {
   name: 'App',
@@ -19,17 +22,21 @@ export default {
   },
   data ()  {
    return {
-     id : String,
+     uid : String,
      items : []
    }
   },
   methods : {
-    POSTtodos ()  {
-      API.POSTtodos(this.data);
+    async POSTtodos (todos)  {
+      var send = {"uid" : "1" ,"items": todos}
+      axios.post("http://localhost:8080/todos", send).then(await this.GETtodos())
     },
-    GETtodos () {
-      return this.data
+    async GETtodos () {
+      await axios.get("http://localhost:8080/todos/1").then(response => this.items = response.data.items)
     }
+  },
+  mounted () {
+    this.GETtodos();
   }
 }
 </script>
