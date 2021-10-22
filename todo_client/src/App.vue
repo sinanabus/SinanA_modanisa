@@ -27,14 +27,17 @@ export default {
    }
   },
   methods : {
-    async POSTtodos (todos)  {
+     POSTtodos (todos)  {
       // handle POST method to backend
       var send = {"uid" : this.uid ,"items": todos}
-      await axios.post("http://localhost:8080/todos", send).then(await this.GETtodos(this.uid))
+      axios.post("http://localhost:8080/todos", send).then(this.GETtodos(this.uid))
     },
     async GETtodos (uid) {
       // handle GET method to backend
-      await axios.get('http://localhost:8080/todos/' + uid).then(response => this.items = response.data.items)
+      var config = {
+      headers: {'Access-Control-Allow-Origin': '*'}
+      }
+      await axios.get('http://localhost:8080/todos/' + uid, config).then(response => this.items = response.data.items)
     },
     async getIP () {
       // Get IP of the user to store in the backend
@@ -43,13 +46,14 @@ export default {
         .then(response => {
         this.uid = response.ip;
         });
-        console.log(this.uid)
+        //console.log(this.uid)
     },
   },
 
-  mounted () {
-    this.getIP();
-    this.GETtodos(this.uid);
+  async mounted () {
+    await this.getIP();
+    //console.log(this.uid)
+    await this.GETtodos(this.uid);
   }
 }
 </script>

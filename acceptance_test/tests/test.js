@@ -14,7 +14,7 @@ afterSuite(async () => {
 });
 
 step("Go to local server", async () => {
-    await goto("http://localhost:8080/")
+    await goto("http://localhost:8081/")
 });
 
 step("Test header contains To Do App", async () => {
